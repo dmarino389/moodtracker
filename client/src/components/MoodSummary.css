@@ -1,0 +1,43 @@
+/* src/Components/MoodSummary.css */
+
+.mood-summary-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+  padding: 0 20px;
+}
+
+.mood-summary-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.mood-summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.mood-value {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.mood-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333333;
+  font-family: "Poppins", sans-serif;
+}
+
+.mood-description {
+  font-size: 0.875rem;
+  color: #777777;
+  font-family: "Poppins", sans-serif;
+}

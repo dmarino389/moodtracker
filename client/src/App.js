@@ -1,43 +1,28 @@
-// client/src/App.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+
+import Dashboard from './Pages/Dashboard';
+import Journal from './Pages/Journal';
+import Insights from './Pages/Insights';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+
+import './Assets/Styles/App.css';
 
 function App() {
-  const [moods, setMoods] = useState([]);
-  const [mood, setMood] = useState('');
-  const [note, setNote] = useState('');
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/moods')
-      .then(res => setMoods(res.data));
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await axios.post('http://localhost:5000/api/moods', { mood, note });
-    setMoods([...moods, response.data]);
-    setMood('');
-    setNote('');
-  };
-
   return (
-    <div>
-      <h1>Mood Tracker</h1>
-      <form onSubmit={handleSubmit}>
-        <input value={mood} onChange={e => setMood(e.target.value)} placeholder="Mood" required />
-        <input value={note} onChange={e => setNote(e.target.value)} placeholder="Note" />
-        <button type="submit">Add Mood</button>
-      </form>
-      <ul>
-        {moods.map((entry, index) => (
-          <li key={index}>
-            <strong>{entry.mood}</strong>: {entry.note} — <em>{new Date(entry.date).toLocaleString()}</em>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/journal" element={<Journal />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </>
   );
 }
 
 export default App;
-
